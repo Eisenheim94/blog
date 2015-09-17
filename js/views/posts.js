@@ -1,8 +1,8 @@
 // js/views/todos.js
-var app = app || {};
+//var app = app || {};
 // модель задачи
 // ----------
-app.Post = Backbone.Model.extend({
+Post = Backbone.Model.extend({
 	defaults: {
 		id: '0',
 		content: 'There are may be content!',
@@ -13,28 +13,38 @@ app.Post = Backbone.Model.extend({
 
 // коллекция задачи
 // ----------
-var PostsList = Backbone.Collection.extend({
-	model: app.Post,
+PostsList = Backbone.Collection.extend({
+	model: Post,
 	url: 'api/blog',
+	comparator: function(model) {
+		return -model.get('id');
+	},
 	initialize: function() {
-		console.log("Posts CollectionInit" + this.length);
+		this.sort();
 	}
 });
 
-app.Posts = new PostsList();
+var Posts = new PostsList();
 
 // представление задачи
 // --------------
-app.PostsView = Backbone.View.extend({
+PostsView = Backbone.View.extend({
 	
 	tagName: 'div',
 	className: 'post',
 	
 	template: _.template( $('#post-template').html() ),
-	
+	events: {
+		'click .destroy': 'clear'
+	},
+	initialize: function() {
+		this.listenTo(this.model, 'destroy', this.remove);
+	},
 	render: function() {
 		this.$el.html( this.template( this.model.toJSON() ) );
 		return this;
-		console.log("Posts ViewRender" + app.Posts.length);
+	},
+	clear: function() {
+		this.model.destroy();
 	}
 });

@@ -46,6 +46,8 @@ return array(
 				array('site/page'		, 'pattern'=>'site/page/<view:\w+>'),
 				array('api/test'		, 'pattern'=>'api/test/<category:\w+>'),
 				array('api/page'		, 'pattern'=>'api/page/<id:\w+>'),
+				array('api/list'		, 'pattern'=>'api/blog'			, 'verb'=>'GET'),
+				array('api/delete'		, 'pattern'=>'api/blog/<id:\d+>'    		, 'verb'=>'DELETE'),
 				// Other controllers
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),

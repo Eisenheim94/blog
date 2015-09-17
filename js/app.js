@@ -1,8 +1,10 @@
 // js/app.js
 var app = app || {};
+var blog = blog || {};
+//var pages = pages || {};
 var ENTER_KEY = 13;
 $(function() {
 	// начинаем с создания **App**.
-	new app.PagesAppView();
-	new app.PostsAppView();
+	app = new PagesAppView();
+	blog = new PostsAppView();
 });

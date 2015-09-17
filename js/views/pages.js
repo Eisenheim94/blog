@@ -1,8 +1,8 @@
 // js/views/todos.js
-var app = app || {};
+//var app = app || {};
 // модель задачи
 // ----------
-app.Page = Backbone.Model.extend({
+Page = Backbone.Model.extend({
 	defaults: {
 		id: '0',
 		content: '<h2>There are may be content!</h2>'
@@ -11,16 +11,16 @@ app.Page = Backbone.Model.extend({
 
 // коллекция задачи
 // ----------
-var PagesList = Backbone.Collection.extend({
-	model: app.Page,
+PagesList = Backbone.Collection.extend({
+	model: Page,
 	url: 'api/page'
 });
 
-app.Pages = new PagesList();
+Pages = new PagesList();
 
 // представление задачи
 // --------------
-app.PagesView = Backbone.View.extend({
+PagesView = Backbone.View.extend({
 	
 	tagName: 'div',
 	className: 'page_content',

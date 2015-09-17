@@ -28,11 +28,11 @@ class ApiController extends Controller
 		/*$user = User::model()->findByPk(1);
 		$user2 = $user->attributes;
 		unset($user2['password']);*/
-		echo CJSON::encode(array('id'=>$id, 'content'=>"Content"));
+		echo CJSON::encode(array('id'=>$id, 'content'=>$this->renderPartial($id, $dataArray, true)));
 		//echo CJSON::encode(array('id'=>$id, 'content'=>"Content ".$user2));
 	}
 	
-	public function actionBlog()
+	public function actionList()
 	{
 		if(isset($_GET['id']))
             $id=$_GET['id'];
@@ -42,6 +42,15 @@ class ApiController extends Controller
 			$p['author'] = $author['name'];
 		}
 		echo CJSON::encode($posts);
+	}
+	
+	public function actionDelete($id)
+	{
+		if (null === ($model = Post::model()->findByPk($id)))
+			throw new CHttpException(404);
+		if (!$model->delete())
+			throw new CException('Cannot delete event');
+		die("Deleted post id: ".$id);
 	}
 	
 	public function actionTest()

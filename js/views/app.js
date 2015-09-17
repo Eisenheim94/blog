@@ -1,61 +1,69 @@
 // js/views/app.js
-var app = app || {};
+//var app = app || {};
 
 // наше приложение
 // ---------------
-app.PagesAppView = Backbone.View.extend({
+PagesAppView = Backbone.View.extend({
 	el: '#block_content',
 	
 	initialize: function() {
 		//this.listenTo(app.Pages, 'all', this.render);
-		this.listenTo(app.Pages, 'add', this.addOne);
-		this.listenTo(app.Pages, 'visible', this.render);
-		//fetch
-		//app.Pages.fetch({data: {id: "3"}, processData: true});
+		this.listenTo(Pages, 'add', this.addOne);
+		this.listenTo(Pages, 'visible', this.render);
+		this.listenTo(Pages, 'routeTo', this.routeTo, this);
+		this.$page = '';
 	},
 	render: function() {
-		this.$('.content').html('');
-		app.Pages.each(this.addOne, this);
+		console.log("removing content at pages");
+		this.$('#main').html('');
+		Pages.each(this.addOne, this);
+		Pages.fetch({data: {id: this.$page}, processData: true});
 	},
 	addOne: function( page ) {
-		var view = new app.PagesView({ model: page });
-		$('.content').html( view.render().el );
+		var view = new PagesView({ model: page });
+		//$('.content').html( view.render().el );
+		//console.log(this.$page);
+		//console.log(page.attributes['content']);
+		$('#main').html( page.attributes['content'] );
+		if(this.$page != 'index')
+			this.$('.post').remove();
 	},
 	addAll: function() {
-		this.$('.content').html('');
-		app.Pages.each(this.addOne, this);
+		//this.$('#main').html('');
+		//Pages.each(this.addOne, this);
+	},
+	routeTo: function( page ) {
+		if(this.$page !== page['page']) {
+			this.$page = page['page'];
+			Pages.trigger('visible');
+		}
 	}
 });
 
 
 // наше приложение
 // ---------------
-app.PostsAppView = Backbone.View.extend({
+PostsAppView = Backbone.View.extend({
 	el: '#block_content',
 	
 	initialize: function() {
-		//this.listenTo(app.Posts, 'all', this.render);
-		//this.listenTo(app.Posts, 'post', this.render);
-		//this.listenTo(app.Posts, 'add', this.addOne);
-		//this.listenTo(app.Posts, 'all', this.addAll);
-		this.listenTo(app.Posts, 'visible', this.render);
-		console.log("Posts AppViewInit" + app.Posts.length);
-		//fetch
-		//app.Pages.fetch({data: {id: "3"}, processData: true});
+		this.listenTo(Posts, 'visible', this.render);
 	},
 	render: function() {
-		this.$('.content').html('');
-		app.Posts.each(this.addOne, this);
-		console.log("Posts Render" + app.Posts.length);
+		console.log("removing content at posts");
+		Posts.fetch();
+		//this.$('.content').html('');
+		this.$('.post').remove();
+		Posts.each(this.addOne, this);
+	
 	},
 	addOne: function( post ) {
-		var view = new app.PostsView({ model: post });
+		var view = new PostsView({ model: post });
 		$('.content').append( view.render().el );
-		console.log("Posts AddOne" + app.Posts.length);
 	},
 	addAll: function() {
-		this.$('.content').html('');
-		app.Posts.each(this.addOne, this);
-		console.log("Posts AddAll" + app.Posts.length);
+		//this.$('#blog__posts').html('');
+		this.$('.post').remove();
+		//Posts.each(this.addOne, this);
 	}
 });

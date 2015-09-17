@@ -58,6 +58,7 @@
             </div>
 
             <div class="content">
+				<div id="main"></div>
                 <?php //echo $content; ?>
             </div>
 
@@ -67,11 +68,13 @@
 
 		<script type="text/template" id="page-template">
 			<h2>Page id: <%- id %></h2>
-			<p>Page content: <%- content %></p>
+			<!--p>Page content: <%- $(this).html(content) %></p-->
+			<p>Page content: <%- $(this).find('p').html(content) %></p>
 		</script>
 		<script type="text/template" id="post-template">
 			<h2><%- author %> <span class="date">at <%- date %></span></h2>
 			<p><%- content %></p>
+			<div class="destroy"></div>
 		</script>
 		<script src="js/lib/jquery-1.7.1.js"></script>
 		<script src="js/lib/underscore.js"></script>
@@ -81,8 +84,8 @@
 		<script src="js/views/posts.js"></script>
 		<script src="js/views/pages.js"></script>
 		<script src="js/views/app.js"></script>
-		<script src="js/routers/router.js"></script>
 		<script src="js/app.js"></script>
+		<script src="js/routers/router.js"></script>
 </body>
 </html>
 

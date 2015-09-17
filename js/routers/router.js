@@ -1,43 +1,30 @@
 // js/routers/router.js
-var app = app || {};
+//var app = app || {};
 // маршрутизатор задач
 // ----------
 
 var Workspace = Backbone.Router.extend({
 	routes:{
-		'.*': 'getBlog',
-		'page/index': 'getBlog',
+		'.*': 'getPage',
+		//'page/index': 'getPage',
 		'page/:id': 'getPage'
 	},
 	getPage: function( id ) {
-		if(!id) {
-			getBlog();
-			return;
+		if(!id || id == "index") {
+			this.getBlog( id );
 		}
 		$.when(
-			window.app.Pages.length || window.app.Pages.fetch({data: {id: id}, processData: true})
+			Pages.length || Pages.fetch({data: {id: id}, processData: true})
 		).done(function() {
-			window.app.Pages.trigger("visible");
+			Pages.trigger("routeTo", {page: id});
 		});
-		//window.app.PagesAppView.render();
-		//window.app.PagesView.render();
 	},
 	getBlog: function( id ) {
 		$.when(
-			window.app.Posts.length || window.app.Posts.fetch({
-			success: function(collection, response, options) {
-        console.log("@Stopcodes.fetch()");
-        console.log(collection); // shows a collection of one element
-        console.log(response);   // shows an array with the right 
-                                 // number of elements
-    }
-			})
+			window.Posts.length || window.Posts.fetch()
 		).done(function() {
-			window.app.Posts.trigger("visible");
-			console.log("Posts Router" + window.app.Posts.length);
+			window.Posts.trigger("visible");
 		});
-		//window.app.PostsAppView.render();
-		//window.app.PostsView.render();
 	}
 });
 app.PagesRouter = new Workspace();
