@@ -15,7 +15,10 @@ app.Post = Backbone.Model.extend({
 // ----------
 var PostsList = Backbone.Collection.extend({
 	model: app.Post,
-	url: 'api/blog'
+	url: 'api/blog',
+	initialize: function() {
+		console.log("Posts CollectionInit" + this.length);
+	}
 });
 
 app.Posts = new PostsList();
@@ -32,5 +35,6 @@ app.PostsView = Backbone.View.extend({
 	render: function() {
 		this.$el.html( this.template( this.model.toJSON() ) );
 		return this;
+		console.log("Posts ViewRender" + app.Posts.length);
 	}
 });
