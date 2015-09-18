@@ -12,6 +12,7 @@ var Workspace = Backbone.Router.extend({
 	getPage: function( id ) {
 		if(!id || id == "index") {
 			this.getBlog( id );
+			id = 'index';
 		}
 		$.when(
 			Pages.length || Pages.fetch({data: {id: id}, processData: true})

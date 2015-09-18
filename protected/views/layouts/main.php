@@ -13,7 +13,7 @@
 
 	<div class="header">
 		<div class="wrapper">
-			<div class="logo"><a href="#index"></a></div>
+			<div class="logo"><a href="#page/index"></a></div>
 
 			<div class="menu">
 				<?php $this->widget('zii.widgets.CMenu',array(
@@ -39,7 +39,7 @@
         <div id="block_content">
 
             <div class="sidebar">
-				<div class="person">
+				<!--div class="person">
 					<img src="images/pic.png" class="picture">
 					<p>Demid Ganenko</p>
             	</div>
@@ -54,7 +54,7 @@
 				<div class="person__block">
 					<p>Likes:</p>
 					<span id="posts">7</span>
-				</div>
+				</div-->
             </div>
 
             <div class="content">
@@ -66,13 +66,31 @@
 
     </div>
 
+		<script type="text/template" id="user-template">
+				<div class="person">
+					<img src="images/pic.png" class="picture">
+					<p><%- name %></p>
+            	</div>
+				<div class="person__block">
+					<p>Posts:</p>
+					<span id="posts"><%- posts %></span>
+				</div>
+				<div class="person__block">
+					<p>Stars:</p>
+					<span id="posts"><%- stars %></span>
+				</div>
+				<div class="person__block">
+					<p>Likes:</p>
+					<span id="posts"><%- likes %></span>
+				</div>
+		</script>
 		<script type="text/template" id="page-template">
 			<h2>Page id: <%- id %></h2>
 			<!--p>Page content: <%- $(this).html(content) %></p-->
 			<p>Page content: <%- $(this).find('p').html(content) %></p>
 		</script>
 		<script type="text/template" id="post-template">
-			<h2><%- author %> <span class="date">at <%- date %></span></h2>
+			<h2><%- authorName %> <span class="date">at <%- date %></span></h2>
 			<p><%- content %></p>
 			<div class="destroy"></div>
 		</script>
@@ -81,6 +99,7 @@
 		<script src="js/lib/backbone.js"></script>
 		<!--script src="js/models/page.js"></script>
 		<script src="js/collections/pages.js"></script-->
+		<script src="js/views/users.js"></script>
 		<script src="js/views/posts.js"></script>
 		<script src="js/views/pages.js"></script>
 		<script src="js/views/app.js"></script>

@@ -7,4 +7,5 @@ $(function() {
 	// начинаем с создания **App**.
 	app = new PagesAppView();
 	blog = new PostsAppView();
+	profiles = new UsersAppView();
 });

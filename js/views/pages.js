@@ -25,7 +25,13 @@ PagesView = Backbone.View.extend({
 	tagName: 'div',
 	className: 'page_content',
 	
+	events: {
+	},
+	
 	template: _.template( $('#page-template').html() ),
+	
+	initialize: function() {
+	},
 	
 	render: function() {
 		this.$el.html( this.template( this.model.toJSON() ) );

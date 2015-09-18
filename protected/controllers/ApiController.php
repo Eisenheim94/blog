@@ -37,11 +37,63 @@ class ApiController extends Controller
 		if(isset($_GET['id']))
             $id=$_GET['id'];
 		$posts = Post::model()->findAllByAttributes(array("author"=>1));
+		$posts2 = array();
+		$i = 0;
+		foreach($posts as $p) {
+			//$author = User::model()->findByPk($p['author']);
+			//$p['attributes']['authorName'] = $author['name'];
+			$posts2[$i] = (array)$p['attributes'];
+			$posts2[$i]['authorName'] = $p->author0->name;
+			$i++;
+			//$p['attributes']['author'] = $author['id'];
+			//var_dump($posts2);
+			//var_dump((array)$p['attributes']);
+			//var_dump($i);
+		}
+		//die(var_dump($posts));
+		echo CJSON::encode($posts2);
+	}
+	
+	public function actionUser()
+	{
+		if(isset($_GET['id'])) {
+            $id=$_GET['id'];
+			$user = User::model()->findByPk($id);
+			$post = Post::model()->findAllByAttributes(array("author"=>$id));
+			$posts = count($post);
+			$user = (array)$user['attributes'];
+			$user['posts'] = $posts;
+			$user['stars'] = 0;
+			$user['likes'] = 0;
+			//var_dump($user);
+			echo CJSON::encode($user);
+		}
+	}
+	
+	public function actionCreate()
+	{
+		
+		//$data = (array)json_decode( file_get_contents('php://input') );
+		//echo (var_dump($data));
+		$model = new Post();
+		$model->setAttributes($this->getJsonInput());
+		//$model->setAttributes($data);
+		if (!$model->validate()) {
+			$this->sendResponse(400, CHtml::errorSummary($model));
+		} else if (!$model->save(false)) {
+			throw new CException('Cannot create a record');
+		}
+		$model->refresh();
+		echo CJSON::encode($model);
+		/*
+		if(isset($_GET['id']))
+            $id=$_GET['id'];
+		$posts = Post::model()->findAllByAttributes(array("author"=>1));
 		foreach($posts as $p) {
 			$author = User::model()->findByPk($p['author']);
 			$p['author'] = $author['name'];
 		}
-		echo CJSON::encode($posts);
+		echo CJSON::encode($posts);*/
 	}
 	
 	public function actionDelete($id)
@@ -51,13 +103,6 @@ class ApiController extends Controller
 		if (!$model->delete())
 			throw new CException('Cannot delete event');
 		die("Deleted post id: ".$id);
-	}
-	
-	public function actionTest()
-	{
-		if(isset($_GET['category']))
-            $category=$_GET['category'];
-		echo CJSON::encode($category);
 	}
 
 

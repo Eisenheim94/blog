@@ -4,10 +4,10 @@
 // ----------
 Post = Backbone.Model.extend({
 	defaults: {
-		id: '0',
+		//id: '0',
 		content: 'There are may be content!',
-		author: 'Author Name',
-		date: 'date'
+		//author: 'Author Name',
+		//date: 'date'
 	}
 });
 
@@ -34,11 +34,15 @@ PostsView = Backbone.View.extend({
 	className: 'post',
 	
 	template: _.template( $('#post-template').html() ),
+	
 	events: {
 		'click .destroy': 'clear'
 	},
 	initialize: function() {
 		this.listenTo(this.model, 'destroy', this.remove);
+		this.listenTo(Posts, 'add', this.addNew);
+		//this.listenTo(Posts, 'create', this.addOne);
+		//Posts.trigger('sort');//();
 	},
 	render: function() {
 		this.$el.html( this.template( this.model.toJSON() ) );

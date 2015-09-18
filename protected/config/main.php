@@ -19,6 +19,11 @@ return array(
 	),
 
 	'modules'=>array(
+		'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'f052n33',
+			),
+
 		// uncomment the following to enable the Gii tool
 		/*
 		'gii'=>array(
@@ -43,10 +48,15 @@ return array(
 			'showScriptName'=>false,
 			'rules'=>array(
 				// REST patterns
+            	'gii'=>'gii',
+            	'gii/<controller:\w+>'=>'gii/<controller>',
+            	'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
 				array('site/page'		, 'pattern'=>'site/page/<view:\w+>'),
 				array('api/test'		, 'pattern'=>'api/test/<category:\w+>'),
 				array('api/page'		, 'pattern'=>'api/page/<id:\w+>'),
-				array('api/list'		, 'pattern'=>'api/blog'			, 'verb'=>'GET'),
+				array('api/user'		, 'pattern'=>'api/user'						, 'verb'=>'GET'),
+				array('api/list'		, 'pattern'=>'api/blog'						, 'verb'=>'GET'),
+				array('api/create'		, 'pattern'=>'api/blog'    					, 'verb'=>'POST'),
 				array('api/delete'		, 'pattern'=>'api/blog/<id:\d+>'    		, 'verb'=>'DELETE'),
 				// Other controllers
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
