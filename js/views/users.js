@@ -35,6 +35,7 @@ var Users = new UsersList();
 UsersView = Backbone.View.extend({
 	
 	tagName: 'div',
+	className: 'person',
 	
 	template: _.template( $('#user-template').html() ),
 	

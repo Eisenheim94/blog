@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="language" content="en">
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/fonts.css">
 	<base href="/">
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -67,22 +68,23 @@
     </div>
 
 		<script type="text/template" id="user-template">
-				<div class="person">
-					<img src="images/pic.png" class="picture">
-					<p><%- name %></p>
-            	</div>
-				<div class="person__block">
-					<p>Posts:</p>
-					<span id="posts"><%- posts %></span>
-				</div>
-				<div class="person__block">
-					<p>Stars:</p>
-					<span id="posts"><%- stars %></span>
-				</div>
-				<div class="person__block">
-					<p>Likes:</p>
-					<span id="posts"><%- likes %></span>
-				</div>
+			<div class="icon-star active"></div>
+			<div class="person__info">
+				<img src="images/pic.png" class="picture">
+				<p><%- name %></p>
+			</div>
+			<div class="person__block">
+				<p>Posts:</p>
+				<span id="posts"><%- posts %></span>
+			</div>
+			<div class="person__block">
+				<p>Stars:</p>
+				<span id="posts"><%- stars %></span>
+			</div>
+			<div class="person__block">
+				<p>Likes:</p>
+				<span id="posts"><%- likes %></span>
+			</div>
 		</script>
 		<script type="text/template" id="page-template">
 			<h2>Page id: <%- id %></h2>
@@ -92,7 +94,8 @@
 		<script type="text/template" id="post-template">
 			<h2><%- authorName %> <span class="date">at <%- date %></span></h2>
 			<p><%- content %></p>
-			<div class="destroy"></div>
+			<div class="destroy icon-cross"></div>
+			<div class="like"></div>
 		</script>
 		<script src="js/lib/jquery-1.7.1.js"></script>
 		<script src="js/lib/underscore.js"></script>
