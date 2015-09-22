@@ -1351,3 +1351,42 @@ HTTP_REFERER=http://sitioblog.com/
 2015/09/21 15:24:19 [warning] [application] Failed to set unsafe attribute "authorName" of "Post".
 in Z:\home\sitioblog.com\www\protected\controllers\ApiController.php (79)
 in Z:\home\sitioblog.com\www\index.php (13)
+2015/09/22 11:41:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/lib/backbone.marionette".' in Z:\home\sitioblog.com\www\framework\web\CWebApplication.php:286
+Stack trace:
+#0 Z:\home\sitioblog.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('js/lib/backbone...')
+#1 Z:\home\sitioblog.com\www\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 Z:\home\sitioblog.com\www\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/js/lib/backbone.marionette
+HTTP_REFERER=http://sitioblog.com/
+---
+2015/09/22 11:41:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in Z:\home\sitioblog.com\www\framework\web\CWebApplication.php:286
+Stack trace:
+#0 Z:\home\sitioblog.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 Z:\home\sitioblog.com\www\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 Z:\home\sitioblog.com\www\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://sitioblog.com/
+---
+2015/09/22 11:42:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/lib/backbone.marionette".' in Z:\home\sitioblog.com\www\framework\web\CWebApplication.php:286
+Stack trace:
+#0 Z:\home\sitioblog.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('js/lib/backbone...')
+#1 Z:\home\sitioblog.com\www\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 Z:\home\sitioblog.com\www\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/js/lib/backbone.marionette
+HTTP_REFERER=http://sitioblog.com/
+---
+2015/09/22 11:43:19 [warning] [application] Failed to set unsafe attribute "authorName" of "Post".
+in Z:\home\sitioblog.com\www\protected\controllers\ApiController.php (79)
+in Z:\home\sitioblog.com\www\index.php (13)
+2015/09/22 11:44:15 [warning] [application] Failed to set unsafe attribute "authorName" of "Post".
+in Z:\home\sitioblog.com\www\protected\controllers\ApiController.php (79)
+in Z:\home\sitioblog.com\www\index.php (13)
+2015/09/22 11:44:29 [warning] [application] Failed to set unsafe attribute "authorName" of "Post".
+in Z:\home\sitioblog.com\www\protected\controllers\ApiController.php (79)
+in Z:\home\sitioblog.com\www\index.php (13)
+2015/09/22 11:52:15 [warning] [application] Failed to set unsafe attribute "authorName" of "Post".
+in Z:\home\sitioblog.com\www\protected\controllers\ApiController.php (79)
+in Z:\home\sitioblog.com\www\index.php (13)
